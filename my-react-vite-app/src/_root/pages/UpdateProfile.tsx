@@ -46,7 +46,7 @@ function UpdateProfile() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof ProfileValidation>) {
     const updatedUser = await updateUser({
-      userId: userProfile.$id,
+      userId: userProfile?.$id || "",
       name: values.name,
       bio: values.bio,
       file: values.file,
