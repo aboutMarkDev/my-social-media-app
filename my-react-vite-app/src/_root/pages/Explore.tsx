@@ -1,41 +1,43 @@
 import Footer from "@/components/shared/Footer";
-import GridPostList from "@/components/shared/GridPostList";
-import Loader from "@/components/shared/Loader";
-import SearchResults from "@/components/shared/SearchResults";
+// THERE'S A BUG IN QUERIES IN USEGETPOSTS!
+// import GridPostList from "@/components/shared/GridPostList";
+// import Loader from "@/components/shared/Loader";
+// import SearchResults from "@/components/shared/SearchResults";
 import { Input } from "@/components/ui/input";
-import useDebounce from "@/hooks/useDebounce";
-import {
-  useGetPosts,
-  useSearchPosts,
-} from "@/lib/react-query/queriesAndMutations";
-import { useState, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+// import useDebounce from "@/hooks/useDebounce";
+// import {
+//   useGetPosts,
+//   useSearchPosts,
+// } from "@/lib/react-query/queriesAndMutations";
+import { useState /*useEffect*/ } from "react";
+// import { useInView } from "react-intersection-observer";
 
 function Explore() {
-  const { ref, inView } = useInView();
-  const { data: posts, fetchNextPage, hasNextPage } = useGetPosts();
+  // const { ref, inView } = useInView();
+  // const { data: posts, fetchNextPage, hasNextPage } = useGetPosts();
 
   const [search, setSearch] = useState("");
-  const debouncedValue = useDebounce(search, 500);
-  const { data: searchedPosts, isFetching: isSearchFetching } =
-    useSearchPosts(debouncedValue);
+  // const debouncedValue = useDebounce(search, 500);
+  // const { data: searchedPosts, isFetching: isSearchFetching } = useSearchPosts(debouncedValue);
 
-  useEffect(() => {
-    if (inView && !search) fetchNextPage();
-  }, [inView, search]);
+  // useEffect(() => {
+  //   if (inView && !search) {
+  //     fetchNextPage();
+  //   }
+  // }, [inView, search]);
 
-  if (!posts) {
-    return (
-      <div className="flex-center w-full h-full">
-        <Loader />
-      </div>
-    );
-  }
+  // if (!posts) {
+  //   return (
+  //     <div className="flex-center w-full h-full">
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
 
-  const shouldShowSearchResults = search !== "";
-  const shouldShowPosts =
-    !shouldShowSearchResults &&
-    posts.pages.every((item) => item.documents.length === 0);
+  // const shouldShowSearchResults = search !== "";
+  // const shouldShowPosts =
+  //   !shouldShowSearchResults &&
+  //   posts.pages.every((item) => item.documents.length === 0);
   return (
     <div className="explore-container">
       <div className="explore-inner_container">
@@ -52,7 +54,7 @@ function Explore() {
             placeholder="Search"
             className="explore-search"
             value={search}
-            onChange={(e) => setSearch(e.currentTarget.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
@@ -71,7 +73,7 @@ function Explore() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-9 w-full max-w-5xl">
+      {/* <div className="flex flex-wrap gap-9 w-full max-w-5xl">
         {shouldShowSearchResults ? (
           <SearchResults
             isSearchFetching={isSearchFetching}
@@ -90,7 +92,7 @@ function Explore() {
         <div ref={ref} className="mt-10">
           <Loader />
         </div>
-      )}
+      )} */}
       <hr className="border max-w-5xl w-full border-dark-4 mt-10" />
       <Footer />
     </div>
