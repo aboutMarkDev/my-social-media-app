@@ -34,5 +34,5 @@ A social media application built with React, Appwrite, React Query for API Integ
 - Enable infinite scrolling in the home feed and finalize improvements to the Explore page.
 - Open to suggestions and recommendations from the community.
 
-## Contributors
+## 👥 Contributors
 - aboutMarkDev
